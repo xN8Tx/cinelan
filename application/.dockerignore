@@ -1,0 +1,7 @@
+node_modules/
+package-json.lock
+package-json
+README.md
+.git
+.next
+

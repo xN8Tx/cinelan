@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  database:
+    container_name: cinelan-database
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_DB}
+    ports:
+      - 5432:5432
+    volumes:
+      - ../../database/data:/var/lib/postgresql/data/
+    networks:
+      - cinelan
+  client:
+    container_name: cinelan-client
+    restart: always
+    build:
+      context: ../../application
+      dockerfile: Dockerfile.dev
+    environment:
+      PORT: ${PORT}
+      MAX_SIZE: ${MAX_SIZE}
+      UPLOAD_FOLDER: ${UPLOAD_FOLDER}
+      DATABASE_PATH: postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@cinelan-database:5432/${DATABASE_DB}
+    volumes:
+      - ${UPLOAD_FOLDER}:/app/public
+      - ../../application:/app
+      - /app/node_modules
+    depends_on:
+      - database
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - cinelan
+networks:
+  cinelan:
+    name: cinelan
+    driver: bridge
