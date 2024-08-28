@@ -1,4 +1,4 @@
-# Logs
+ndexndex# Logs
 logs
 *.log
 npm-debug.log*
@@ -130,4 +130,4 @@ dist
 .pnp.*
 
 upload/
-database/
+database
