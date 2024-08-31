@@ -25,11 +25,10 @@ services:
       PORT: ${PORT}
       MAX_SIZE: ${MAX_SIZE}
       UPLOAD_FOLDER: ${UPLOAD_FOLDER}
-      DATABASE_PATH: postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@cinelan-database:5432/${DATABASE_DB}
+      DATABASE_URL: postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@cinelan-database:5432/${DATABASE_DB}
     volumes:
       - ${UPLOAD_FOLDER}:/app/public
       - ../../application:/app
-      - /app/node_modules
     depends_on:
       - database
     ports:

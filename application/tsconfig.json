@@ -22,11 +22,14 @@
       }
     ],
     "paths": {
+      "@ui": [
+        "./src/ui/index.tsx"
+      ],
       "@hk": [
         "./src/hooks/index.ts"
       ],
-      "@db": [
-        "./src/database/index.ts"
+      "@cf": [
+        "./src/config/index.ts"
       ],
       "@sr": [
         "./src/services/index.ts"
@@ -50,6 +53,7 @@
   },
   "include": [
     "next-env.d.ts",
+    "env.d.ts",
     "./src/**/*.ts",
     "./src/**/*.tsx",
     ".next/types/**/*.ts"

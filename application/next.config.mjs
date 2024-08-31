@@ -1,4 +1,3 @@
-import { createTables } from "./create-tables.mjs";
 import { createFolders } from "./create-folders.mjs";
 import { folders, setUpEnv } from "./constants.mjs";
 
@@ -17,9 +16,6 @@ export default async (phase, { defaultConfig }) => {
   );
 
   setUpEnv();
-
-  // Initialize the database
-  await createTables(errorString);
 
   const nextConfig = {};
   return nextConfig;

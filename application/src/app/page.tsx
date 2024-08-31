@@ -1,3 +1,10 @@
+import { FileRoute } from "@cp";
+
 export default function HomePage() {
-  return <>Home</>;
+  return (
+    <>
+      <FileRoute />
+      <div></div>
+    </>
+  );
 }
