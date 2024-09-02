@@ -60,7 +60,7 @@ Files.init(
     },
   },
   {
-    sequelize,
+    sequelize: sequelize,
     tableName: "files",
     timestamps: false,
   },

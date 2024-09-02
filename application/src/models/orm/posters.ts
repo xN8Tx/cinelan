@@ -21,7 +21,7 @@ Posters.init(
     size: DataTypes.STRING(250),
   },
   {
-    sequelize,
+    sequelize: sequelize,
     tableName: "posters",
     timestamps: false,
   },

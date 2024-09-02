@@ -46,7 +46,7 @@ FileInfo.init(
     },
   },
   {
-    sequelize,
+    sequelize: sequelize,
     tableName: "file_info",
     timestamps: false,
   },

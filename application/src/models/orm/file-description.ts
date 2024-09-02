@@ -43,7 +43,7 @@ FileDescription.init(
     budget: DataTypes.STRING,
   },
   {
-    sequelize,
+    sequelize: sequelize,
     tableName: "file_description",
     timestamps: false,
   },

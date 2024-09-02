@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 
 import { Footer, Sidebar } from "@cp";
-import { syncDatabase } from "@lb";
+import { syncDatabase } from "@md";
 
 import "@st/globals.css";
 

@@ -38,7 +38,7 @@ WatchedFiles.init(
     time: DataTypes.BIGINT,
   },
   {
-    sequelize,
+    sequelize: sequelize,
     tableName: "watched_files",
     timestamps: false,
   },
