@@ -17,7 +17,13 @@ export const folders = {
   LOGS_FOLDER_PATH,
 };
 
-const envObject = { ...folders, COMBINED_LOGS_PATH, ERROR_LOGS_PATH };
+const envObject = {
+  ...folders,
+  COMBINED_LOGS_PATH,
+  ERROR_LOGS_PATH,
+  ORIGIN_FOLDER_NAME,
+  POSTER_FOLDER_NAME,
+};
 
 export const setUpEnv = () => {
   Object.keys(envObject).forEach((folder) => {

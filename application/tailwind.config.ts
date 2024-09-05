@@ -16,6 +16,7 @@ const config: Config = {
         "primary-c2": "#E8ECFD",
         "primary-c3": "#899DFC",
         "success-c1": "#17C964",
+        "danger-c1": "#EE4346",
         "neutral-black": "#000000",
         "neutral-white": "#ffffff",
         "body-bg": { light: "#F4F5F9", dark: "#171923" },

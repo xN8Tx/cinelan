@@ -1,10 +1,12 @@
-import { FileRoute } from "@cp";
+import type { PageProps } from "@tp";
+import { getPageData } from "@lb";
 
-export default function HomePage() {
-  return (
-    <>
-      <FileRoute />
-      <div></div>
-    </>
-  );
-}
+import { PageWrapper } from "@cp";
+
+const HomePage = async (props: PageProps) => {
+  const data = await getPageData(props);
+
+  return <PageWrapper data={data} />;
+};
+
+export default HomePage;

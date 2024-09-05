@@ -1,9 +1,12 @@
-import { FileRoute } from "@cp";
+import type { PageProps } from "@tp";
+import { getPageData } from "@lb";
 
-export default function PathPage() {
-  return (
-    <>
-      <FileRoute />
-    </>
-  );
-}
+import { PageWrapper } from "@cp";
+
+const PathPage = async (props: PageProps) => {
+  const data = await getPageData(props);
+
+  return <PageWrapper data={data} />;
+};
+
+export default PathPage;

@@ -8,12 +8,13 @@ import { Users } from "./users";
 import { WatchedFiles } from "./watched-files";
 
 // Setup relation
-Files.belongsTo(Types, { foreignKey: "type_id" });
-Files.belongsTo(Posters, { foreignKey: "poster_id" });
+Files.belongsTo(Types, { foreignKey: "type_id", as: "type" });
 Files.hasOne(Files, { as: "ParentFile", foreignKey: "file_id" });
+Files.hasOne(Posters, { as: "poster", foreignKey: "file_id" });
 
 FileDescription.belongsTo(Files, { foreignKey: "file_id" });
 FileInfo.belongsTo(Files, { foreignKey: "file_id" });
+Posters.belongsTo(Files, { foreignKey: "file_id", as: "file" });
 
 WatchedFiles.belongsTo(Users, { foreignKey: "user_id" });
 WatchedFiles.belongsTo(Files, { foreignKey: "file_id" });

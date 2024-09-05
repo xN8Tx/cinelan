@@ -26,10 +26,10 @@
         "./src/ui/index.tsx"
       ],
       "@hk": [
-        "./src/hooks/index.ts"
+        "./src/hooks/index.tsx"
       ],
-      "@cf": [
-        "./src/config/index.ts"
+      "@tp": [
+        "./src/types/index.ts"
       ],
       "@sr": [
         "./src/services/index.ts"
@@ -43,11 +43,11 @@
       "@lb": [
         "./src/lib/index.ts"
       ],
-      "@cn": [
-        "./src/constants/index.mjs"
-      ],
       "@cp": [
         "./src/components/index.tsx"
+      ],
+      "@ct": [
+        "./src/context/index.tsx"
       ]
     }
   },

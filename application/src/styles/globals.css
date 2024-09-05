@@ -7,3 +7,9 @@
   max-width: 1440px;
   padding: 0 15px;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+  display: none;
+}

@@ -1,5 +1,8 @@
 import { createLogger, format, transports } from "winston";
 
+export const logger = {};
+
+/*
 export const logger = createLogger({
   level: "info",
   format: format.combine(
@@ -18,6 +21,7 @@ export const logger = createLogger({
   ],
 });
 
+
 if (process.env.NODE_ENV !== "production") {
   logger.add(
     new transports.Console({
@@ -25,3 +29,4 @@ if (process.env.NODE_ENV !== "production") {
     }),
   );
 }
+*/

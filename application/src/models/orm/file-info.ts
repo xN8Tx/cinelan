@@ -29,7 +29,7 @@ FileInfo.init(
       onDelete: "SET NULL",
     },
     duration: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
     size: {

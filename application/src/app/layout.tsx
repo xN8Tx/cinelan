@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 
-import { Footer, Sidebar } from "@cp";
-import { syncDatabase } from "@md";
+import { Footer, Sidebar, BigModal } from "@cp";
 
 import "@st/globals.css";
+import { SmallModal } from "../components/small-modal";
+import { syncDatabase } from "@md";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,17 +19,19 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await syncDatabase();
+  //await syncDatabase();
 
   return (
     <html lang="en">
-      <body className={`${inter.className} dark`}>
+      <body className={`${inter.className} dark overflow-y-hidden`}>
         <Providers>
           <div className="w-full h-screen flex gap-8 dark:bg-body-bg-dark bg-body-bg-light">
+            <BigModal />
             <Sidebar />
-            <div className="w-[calc(100%-282px)] h-full flex flex-col gap-5 py-5 pr-5">
+            <div className="w-[calc(100%-282px)] relative h-full flex flex-col gap-5 py-5 pr-5">
               {children}
               <Footer />
+              <SmallModal />
             </div>
           </div>
         </Providers>

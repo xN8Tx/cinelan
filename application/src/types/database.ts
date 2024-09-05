@@ -22,11 +22,12 @@ export type FileInfoDB = {
 export type FileDB = {
   id: number;
   type_id: number;
-  poster_id: number;
+  poster_id?: number;
   name: string;
   original_source: string;
   time: string;
   file_id?: number;
+  slug: string;
 };
 
 export type PosterDB = {

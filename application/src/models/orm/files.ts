@@ -8,7 +8,6 @@ import { Types } from "./types";
 export class Files extends Model {
   public id!: number;
   public type_id!: number;
-  public poster_id!: number;
   public name!: string;
   public original_source!: string;
   public time!: Date;
@@ -30,15 +29,11 @@ Files.init(
       },
       allowNull: false,
     },
-    poster_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: Posters,
-        key: "id",
-      },
+    name: {
+      type: DataTypes.STRING(250),
       allowNull: false,
     },
-    name: {
+    slug: {
       type: DataTypes.STRING(250),
       allowNull: false,
     },
