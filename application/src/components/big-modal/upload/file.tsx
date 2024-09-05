@@ -3,6 +3,7 @@ import type { UploadData } from "@tp";
 
 import { FileInput } from "@ui";
 import { Input } from "@nextui-org/react";
+import { SelectFolder } from "../../select-folder";
 
 type FileProps = {
   uploadData: UploadData;
@@ -34,6 +35,7 @@ export const File = ({ uploadData, setUploadData }: FileProps) => {
         value={uploadData.name}
         onChange={changeNameHandler}
       />
+      <SelectFolder data={uploadData} setData={setUploadData} />
       <FileInput file={uploadData.file} onChange={changeFileHandler} />
     </>
   );

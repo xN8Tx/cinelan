@@ -12,6 +12,7 @@ export class Files extends Model {
   public original_source!: string;
   public time!: Date;
   public file_id?: number;
+  public slug!: string;
 }
 
 Files.init(

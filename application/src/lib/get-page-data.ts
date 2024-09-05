@@ -1,7 +1,6 @@
+"use server";
 import type { FileData, PageData, PageProps } from "@tp";
 import { Files, Posters, Types } from "@md";
-import { sequelize } from "./orm";
-import { Op, Sequelize } from "sequelize";
 
 type GetPageData = (props: PageProps) => Promise<PageData>;
 

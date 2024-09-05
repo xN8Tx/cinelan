@@ -2,6 +2,7 @@ import type { ChangeEvent, Dispatch, SetStateAction } from "react";
 import type { UploadData } from "@tp";
 
 import { Input } from "@nextui-org/react";
+import { SelectFolder } from "../../select-folder";
 
 type FolderProps = {
   uploadData: UploadData;
@@ -26,6 +27,7 @@ export const Folder = ({ uploadData, setUploadData }: FolderProps) => {
         value={uploadData.name}
         onChange={changeNameHandler}
       />
+      <SelectFolder data={uploadData} setData={setUploadData} />
     </>
   );
 };

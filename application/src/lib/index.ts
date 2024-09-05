@@ -5,3 +5,4 @@ export * from "./get-page-data";
 export * from "./slug-generator";
 export * from "./poster-generator";
 export * from "./get-video-duration";
+export * from "./get-folder-for-upload";

@@ -10,10 +10,11 @@ export const Title = ({ name }: TitleProps) => {
   const path = usePathname();
   const router = useRouter();
 
-  console.log(path);
-
   const closeHandler = () => {
-    router.back();
+    const splitedPath = path.split("/");
+    const prevPath = splitedPath.slice(0, splitedPath.length - 1).join("/");
+
+    router.push(prevPath);
   };
 
   return (

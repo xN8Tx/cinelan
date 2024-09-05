@@ -18,6 +18,7 @@ const emptyUploadData: UploadData = {
   type: "",
   file: null,
   name: "",
+  fileId: "0",
 };
 
 export const Upload = () => {

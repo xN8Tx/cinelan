@@ -10,9 +10,16 @@ type FileProps = {
 };
 
 export const Item = ({ file }: FileProps) => {
+  const href =
+    file.type.name === "file" || file.type.name === "folder"
+      ? ""
+      : file.type.name === "movie"
+        ? "movies"
+        : "serials";
+
   return (
     <Link
-      href={file.slug}
+      href={`${href}/${file.slug}`}
       className="w-full py-3 px-5 flex justify-between items-center rounded-xl transition-all hover:bg-card-promo-elements-c1-light  dark:hover:bg-card-promo-elements-c1-dark"
     >
       <div className="flex gap-2 items-center">
