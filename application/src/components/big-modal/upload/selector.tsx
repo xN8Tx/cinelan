@@ -10,8 +10,8 @@ type SelectorProps = {
 };
 
 const types = [
-  { label: "Movie", key: "movie" },
-  { label: "Serial", key: "serial" },
+  //  { label: "Movie", key: "movie" },
+  //  { label: "Serial", key: "serial" },
   { label: "File", key: "file" },
   { label: "Folder", key: "folder" },
 ];

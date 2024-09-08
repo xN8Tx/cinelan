@@ -1,6 +1,6 @@
 "use client";
 import type { ChangeEvent, Dispatch, SetStateAction } from "react";
-import type { Loading } from "@tp";
+import type { Loading, UploadData } from "@tp";
 
 import { useEffect, useState } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
@@ -18,7 +18,7 @@ type SelectorFolder = {
 
 type SelectFolderProps = {
   data: Data;
-  setData: Dispatch<SetStateAction<Data>>;
+  setData: Dispatch<SetStateAction<UploadData>>;
 };
 
 export const SelectFolder = ({ data, setData }: SelectFolderProps) => {

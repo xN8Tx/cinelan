@@ -28,7 +28,6 @@ services:
       DATABASE_URL: postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@cinelan-database:5432/${DATABASE_DB}
     volumes:
       - ${UPLOAD_FOLDER}:/app/public
-      - /app/node_modules
     depends_on:
       - database
     ports:

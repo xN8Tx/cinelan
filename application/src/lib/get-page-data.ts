@@ -2,7 +2,10 @@
 import type { FileData, PageData, PageProps } from "@tp";
 import { Files, Posters, Types } from "@md";
 
-type GetPageData = (props: PageProps) => Promise<PageData>;
+type GetPageData = (
+  props: PageProps,
+  type: "movie" | "serial" | null,
+) => Promise<PageData>;
 
 const fileTypes = ["movie", "file", "episode"];
 const pagePath = ["serials", "movies"];
@@ -68,20 +71,15 @@ const getFile = async (slug: string) => {
   return JSON.parse(JSON.stringify(data)) as FileData;
 };
 
-export const getPageData: GetPageData = async (props: PageProps) => {
-  let searchType = ["file", "folder"];
-  let isSort = true;
+export const getPageData: GetPageData = async (
+  props: PageProps,
+  type: "movie" | "serial" | null = null,
+) => {
+  let searchType = type ? [`${type}`] : ["file", "folder"];
+  let isSort = type ? false : true;
 
   if (!props.params.path)
     return { files: await getFiles(searchType, null, isSort) };
-
-  if (props.params.path[0] === "movies") {
-    searchType = ["movie"];
-    isSort = false;
-  } else if (props.params.path[0] === "serials") {
-    searchType = ["serial", "season", "episode"];
-    isSort = false;
-  }
 
   const lastPathIndex = props.params.path.length - 1;
   const lastPath = props.params.path[lastPathIndex];
@@ -92,7 +90,7 @@ export const getPageData: GetPageData = async (props: PageProps) => {
       files: await getFiles(searchType),
     };
 
-  const lastChild = await getFile(lastPath);
+  const lastChild = await getFile(props.params.path);
 
   // 404 error
   if (!lastChild) return null;

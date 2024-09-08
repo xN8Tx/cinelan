@@ -11,26 +11,32 @@ export const POST = async (req: NextRequest) => {
     const type = data.get("type")?.toString();
 
     switch (type as UploadSelectorValues) {
-      case "movie":
-      case "serial":
       case "file": {
-        const { status } = await file(data);
+        await file(data);
 
-        return NextResponse.json({
-          status,
-        });
+        return NextResponse.json(
+          {
+            message: "Success upload file",
+          },
+          { status: 200 },
+        );
       }
       case "folder": {
-        const { status } = await folder(data);
-        return NextResponse.json({
-          status,
-        });
+        await folder(data);
+        return NextResponse.json(
+          {
+            message: "Success upload file",
+          },
+          { status: 200 },
+        );
       }
       default: {
         throw new Error("Incorrect upload type");
       }
     }
   } catch (error) {
+    console.log("My error:", error);
+
     return NextResponse.json(
       { message: "Internal server error", error: error || "" },
       { status: 500 },

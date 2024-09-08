@@ -1,6 +1,7 @@
 import { FileDB, FileDescriptionDB, PosterDB, TypeDB } from "./database";
 
-export type UploadSelectorValues = "movie" | "serial" | "file" | "folder" | "";
+// export type UploadSelectorValues = "movie" | "serial" | "file" | "folder" | "";
+export type UploadSelectorValues = "file" | "folder" | "";
 
 export type Loading = "success" | "loading" | "error" | "idle";
 
@@ -17,7 +18,7 @@ export type PageData = { files: Array<FileData>; file?: FileData } | null;
 
 export type PageProps = {
   params: {
-    path?: string[];
+    path?: string;
   };
   searchParams: { [x: string]: string };
 };
@@ -26,4 +27,9 @@ export type FileData = FileDB & {
   type: TypeDB;
   poster?: PosterDB;
   description?: FileDescriptionDB;
+};
+
+export type Paths = {
+  name: string;
+  slug: string;
 };

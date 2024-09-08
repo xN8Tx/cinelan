@@ -15,7 +15,7 @@ export const File = ({ file }: FileProps) => {
       <Title name={file.name} />
       <div className="w-full h-full flex flex-col justify-between gap-8 overflow-y-scroll">
         <div className="w-full flex flex-col gap-4">
-          <Video />
+          <Video file={file}/>
           <Info description={file.description} />
         </div>
         <div className="w-full flex flex-col gap-4">

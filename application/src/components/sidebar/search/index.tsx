@@ -16,12 +16,14 @@ export const Search = () => {
     <div className="w-full">
       <Input
         size="lg"
-        className="w-full"
+        className="w-full text-heading-c1-light dark:text-heading-c1-dark dark:placeholder:text-form-placeh-c1-dark placeholder:text-form-placeh-c1-light"
         type="text"
         variant="bordered"
         value={searchValue}
         onChange={changeHandler}
-        startContent={<CiSearch color="text-heading-c1-dark" />}
+        startContent={
+          <CiSearch color="dark:text-form-placeh-c1-dark text-form-placeh-c1-light" />
+        }
         placeholder="Search"
       />
     </div>

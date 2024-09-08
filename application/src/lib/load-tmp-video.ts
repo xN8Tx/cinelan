@@ -2,28 +2,27 @@ import { createWriteStream } from "fs";
 import { Readable } from "stream";
 
 type LoadFile = (formData: FormData) => Promise<{
-  status: boolean;
-  source?: string;
-  originalName?: string;
-  format?: string;
-  size?: number;
+  tmpSource: string;
+  originalName: string;
+  format: string;
+  size: number;
 }>;
 
-export const loadFile: LoadFile = async (formData: FormData) => {
-  return new Promise(function (resolve) {
+export const loadTmpVideo: LoadFile = async (formData: FormData) => {
+  return new Promise(function (resolve, reject) {
     // @ts-ignore
     const file: File | null = formData.get("file");
 
     if (!file) {
-      resolve({ status: false });
+      reject("File is empty");
     }
 
     const { size, name } = file!;
 
     const timestamp = Date.now();
-    const format = (name as string).split(".").pop();
+    const format = (name as string).split(".").pop()!;
     const filename = `${timestamp}.${format}`;
-    const filePath = `${process.env.ORIGIN_FOLDER_PATH}/${filename}`;
+    const filePath = `${process.env.TMP_FOLDER_PATH}/${filename}`;
 
     const fileStream = createWriteStream(filePath);
 
@@ -38,13 +37,12 @@ export const loadFile: LoadFile = async (formData: FormData) => {
         .pipe(fileStream)
         .on("error", (error) => {
           console.error("Error while saving the file:", error);
-          resolve({ status: false });
+          reject(error);
         })
         .on("finish", () => {
           console.log("File saved successfully");
           resolve({
-            status: true,
-            source: filename,
+            tmpSource: filename,
             originalName: name,
             format,
             size,

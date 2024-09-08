@@ -35,7 +35,12 @@ export const Sort = (props: {}) => {
       onChange={changeSelectHandler}
     >
       {sortParams.map((sort) => (
-        <SelectItem key={sort.key}>{sort.label}</SelectItem>
+        <SelectItem
+          key={sort.key}
+          className="text-heading-c1-light dark:text-heading-c1-dark"
+        >
+          {sort.label}
+        </SelectItem>
       ))}
     </Select>
   );

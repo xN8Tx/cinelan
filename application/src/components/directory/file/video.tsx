@@ -1,14 +1,16 @@
-import Image from "next/image";
+import type { FileData } from "@tp";
+import VideoPlayer from "../../video-player";
 
-export const Video = () => {
+type VideoProps = {
+  file: FileData;
+};
+
+export const Video = ({ file }: VideoProps) => {
   return (
-    <div className="w-full aspect-w-16 aspect-h-9 rounded-xl overflow-hidden">
-      <Image
-        width={300}
-        height={300}
-        className="w-full h-full object-cover"
-        src="/poster/test.jpg"
-        alt="test"
+    <div className="w-full aspect-video rounded-xl overflow-hidden">
+      <VideoPlayer
+        src={`/${process.env.ORIGIN_FOLDER_NAME}/${file.original_source}`}
+        poster={file.poster!.original_source}
       />
     </div>
   );

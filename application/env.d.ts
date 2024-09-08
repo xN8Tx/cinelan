@@ -8,9 +8,11 @@ declare namespace NodeJS {
     UPLOAD_FOLDER: string;
     DATABASE_URL: string;
     ORIGIN_FOLDER_PATH: string;
+    ORIGIN_FOLDER_NAME: string;
     POSTER_FOLDER_PATH: string;
     LOGS_FOLDER_PATH: string;
     COMBINED_LOGS_PATH: string;
     ERROR_LOGS_PATH: string;
+    TMP_FOLDER_PATH: string;
   }
 }

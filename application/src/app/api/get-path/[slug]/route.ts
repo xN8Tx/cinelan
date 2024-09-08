@@ -1,4 +1,4 @@
-import type { FileDB } from "@tp";
+import type { FileDB, Paths } from "@tp";
 import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
@@ -11,8 +11,8 @@ type Params = {
   };
 };
 
-const getPath = async (array: string[], slug?: string, id?: number) => {
-  const path: string[] = JSON.parse(JSON.stringify(array));
+const getPath = async (array: Paths[], slug?: string, id?: number) => {
+  const path: Paths[] = JSON.parse(JSON.stringify(array));
 
   let whereObject = {};
 
@@ -29,9 +29,9 @@ const getPath = async (array: string[], slug?: string, id?: number) => {
     ],
   });
 
-  if (!response) return ["Error"];
+  if (!response) return [{ name: "Error", slug: "/" }];
 
-  path.push(response.slug);
+  path.push({ name: response.name, slug: response.slug });
 
   if (response.file_id) {
     return await getPath(path, undefined, response.file_id);
@@ -45,7 +45,7 @@ const getPath = async (array: string[], slug?: string, id?: number) => {
         ? "Movies"
         : "Serials";
 
-  path.push(firstRoute);
+  path.push({ name: firstRoute, slug: "/" });
 
   return path.reverse();
 };
@@ -58,7 +58,7 @@ export const GET = async (_: NextRequest, { params }: Params) => {
       throw new Error("Params slug is null or NaN");
     }
 
-    const slugs: string[] = await getPath([], slug);
+    const slugs: Paths[] = await getPath([], slug);
 
     return NextResponse.json({ message: slugs }, { status: 200 });
   } catch (error) {

@@ -28,7 +28,7 @@ export default async function RootLayout({
           <div className="w-full h-screen flex gap-8 dark:bg-body-bg-dark bg-body-bg-light">
             <BigModal />
             <Sidebar />
-            <div className="w-[calc(100%-282px)] relative h-full flex flex-col gap-5 py-5 pr-5">
+            <div className="w-full md:pl-0 md:w-[calc(100%-282px)] relative h-full flex flex-col gap-5 py-5 px-5">
               {children}
               <Footer />
               <SmallModal />
