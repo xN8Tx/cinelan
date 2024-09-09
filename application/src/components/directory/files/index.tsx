@@ -7,7 +7,7 @@ type FilesProps = {
 
 export const Files = ({ files }: FilesProps) => {
   return (
-    <div className="w-full overflow-y-scroll flex flex-col gap-3 overflow-x-hidden">
+    <div className="w-full overflow-y-scroll flex flex-col gap-3 overflow-x-hidden mt-3">
       {files.map((file) => (
         <Item key={file.id} file={file} />
       ))}

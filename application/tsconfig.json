@@ -48,6 +48,9 @@
       ],
       "@ct": [
         "./src/context/index.tsx"
+      ],
+      "@ut": [
+        "./src/utils/index.ts"
       ]
     }
   },

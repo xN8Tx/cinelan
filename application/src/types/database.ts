@@ -13,8 +13,8 @@ export type FileDescriptionDB = {
 export type FileInfoDB = {
   id: number;
   file_id: number;
-  duration: bigint;
-  size: bigint;
+  duration: number;
+  size: number;
   format: string;
   original_name: string;
 };

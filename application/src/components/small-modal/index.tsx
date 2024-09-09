@@ -5,7 +5,7 @@ import { SmallModalContext } from "@ct";
 import { Success } from "./success";
 import { Loading } from "./loading";
 import { Message } from "./message";
-import { Error } from "./errpr";
+import { Error } from "./error";
 
 export const SmallModal = () => {
   const { smallModalType } = useContext(SmallModalContext);

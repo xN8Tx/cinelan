@@ -32,6 +32,10 @@ export const FileRoute = () => {
         setPaths([{ name: "Files", slug: "/" }]);
         setIsLoading(false);
         break;
+      case "/settings":
+        setPaths([{ name: "Settings", slug: "/settings" }]);
+        setIsLoading(false);
+        break;
       /*
       case "/movies":
         setPaths(["Movies"]);
