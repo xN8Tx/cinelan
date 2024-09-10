@@ -12,20 +12,21 @@ export const POST = async (req: NextRequest) => {
 
     switch (type as UploadSelectorValues) {
       case "file": {
-        await file(data);
+        const newFile = await file(data);
 
         return NextResponse.json(
           {
-            message: "Success upload file",
+            message: { text: "Success upload file", file: newFile },
           },
           { status: 200 },
         );
       }
       case "folder": {
-        await folder(data);
+        const newFile = await folder(data);
         return NextResponse.json(
           {
             message: "Success upload file",
+            file: newFile,
           },
           { status: 200 },
         );

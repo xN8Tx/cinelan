@@ -2,7 +2,6 @@ import type { FileDB } from "@tp";
 import type { NextRequest } from "next/server";
 
 import { NextResponse } from "next/server";
-
 import { Files, Types } from "@md";
 
 type Params = {
@@ -14,14 +13,15 @@ type Params = {
 export const GET = async (_: NextRequest, { params }: Params) => {
   try {
     const { id } = params;
+    const fileId = id === "null" ? null : Number(id);
 
-    if (!id || isNaN(Number(id))) {
-      throw new Error("Params id is null or NaN");
+    if (fileId === null || isNaN(fileId)) {
+      throw new Error("Invalid id parameter");
     }
 
     const responseFolders = await Files.findAll({
       where: {
-        file_id: Number(id) === 0 ? null : Number(id),
+        file_id: fileId === 0 ? null : fileId,
       },
       include: [
         {
@@ -42,12 +42,12 @@ export const GET = async (_: NextRequest, { params }: Params) => {
       key: folder.id.toString(),
     }));
 
-    if (Number(id) === 0) {
+    if (fileId === 0) {
       selectorFolders.unshift({ label: "-- Home --", key: "0", parentId: "0" });
     } else {
       const responseFolder = await Files.findOne({
         where: {
-          id: Number(id),
+          id: fileId,
         },
       });
 
@@ -56,13 +56,13 @@ export const GET = async (_: NextRequest, { params }: Params) => {
       selectorFolders.unshift(
         {
           label: "-- Go back --",
-          key: "null",
-          parentId: "0",
+          key: "-1", // For going back
+          parentId: folder.file_id ? folder.file_id.toString() : "0",
         },
         {
           label: `-- ${folder.name} --`,
-          parentId: folder.file_id ? folder.file_id.toString() : "0",
           key: folder.id.toString(),
+          parentId: folder.file_id ? folder.file_id.toString() : "0",
         },
       );
     }

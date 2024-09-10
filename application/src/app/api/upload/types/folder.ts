@@ -1,7 +1,9 @@
-import { slugGenerator } from "@lb";
+import type { FileDB } from "@tp";
 import { Files, Types } from "@md";
 
-export const folder = async (formData: FormData) => {
+import { slugGenerator } from "@lb";
+
+export const folder = async (formData: FormData): Promise<FileDB> => {
   const name = formData.get("name")?.toString();
   const type = formData.get("type")?.toString();
   const fileId = Number(formData.get("fileId")?.toString());
@@ -15,5 +17,5 @@ export const folder = async (formData: FormData) => {
     slug: await slugGenerator(name!),
   });
 
-  return { newFile, status: true };
+  return newFile.toJSON();
 };

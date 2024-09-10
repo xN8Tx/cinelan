@@ -1,4 +1,4 @@
-const UPLOAD_FOLDER_NAME = "public";
+const UPLOAD_FOLDER_NAME = "upload";
 const LOGS_FOLDER_NAME = "logs";
 const POSTER_FOLDER_NAME = "poster";
 const ORIGIN_FOLDER_NAME = "origin";
@@ -26,6 +26,7 @@ const envObject = {
   ERROR_LOGS_PATH,
   ORIGIN_FOLDER_NAME,
   POSTER_FOLDER_NAME,
+  UPLOAD_FOLDER_PATH,
 };
 
 export const setUpEnv = () => {

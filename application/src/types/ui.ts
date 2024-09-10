@@ -8,7 +8,7 @@ export type Loading = "success" | "loading" | "error" | "idle";
 export type UploadData = {
   type: UploadSelectorValues;
   file: File | null;
-  fileId: string;
+  fileId: string | null;
   name: string;
 };
 
@@ -21,6 +21,11 @@ export type PageProps = {
     path?: string;
   };
   searchParams: { [x: string]: string };
+};
+
+export type EditData = {
+  name: string;
+  fileId: string | null;
 };
 
 export type FileData = FileDB & {

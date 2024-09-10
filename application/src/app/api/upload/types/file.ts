@@ -1,13 +1,14 @@
+import type { FileDB } from "@tp";
 import { FileInfo, Files, Posters, Types } from "@md";
 import {
   loadTmpVideo,
   slugGenerator,
-  deleteTmpFile,
+  deleteFile,
   getVideoDuration,
   getConvertVideoAndPoster,
 } from "@lb";
 
-export const file = async (formData: FormData) => {
+export const file = async (formData: FormData): Promise<FileDB> => {
   try {
     const name = formData.get("name")?.toString();
     const type = formData.get("type")?.toString();
@@ -21,16 +22,12 @@ export const file = async (formData: FormData) => {
 
     const duration = await getVideoDuration(tmpSource);
 
-    console.log(duration);
-
     const { filePath, posterPath } = await getConvertVideoAndPoster(
       tmpSource,
       format,
       true,
       duration,
     );
-
-    console.log(filePath);
 
     // Create file
     const fileName = name && name.length > 0 ? name : originalName;
@@ -60,9 +57,9 @@ export const file = async (formData: FormData) => {
       original_source: posterPath,
     });
 
-    deleteTmpFile(tmpSource);
+    deleteFile(`${process.env.TMP_FOLDER_PATH}/${tmpSource}`);
 
-    return { newFile };
+    return newFile.toJSON();
   } catch (error) {
     throw new Error(error as string);
   }

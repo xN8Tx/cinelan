@@ -27,7 +27,7 @@ services:
       UPLOAD_FOLDER: ${UPLOAD_FOLDER}
       DATABASE_URL: postgres://${DATABASE_USER}:${DATABASE_PASSWORD}@cinelan-database:5432/${DATABASE_DB}
     volumes:
-      - ${UPLOAD_FOLDER}:/app/public
+      - ${UPLOAD_FOLDER}:/app/upload
       - ../../application:/app
     depends_on:
       - database
