@@ -74,7 +74,7 @@ export const deleteDataAndFiles = async (id: number) => {
 
     if (poster.original_source[0] === "/") {
       await deleteFile(
-        `${process.env.UPLOAD_FOLDER_PATH}${poster.original_source}`,
+        `${process.env.UPLOAD_FOLDER_PATH}/${poster.original_source.split("/").pop()}`,
       );
     }
     await deleteFile(

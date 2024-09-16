@@ -15,8 +15,8 @@ export const getConvertVideoAndPoster = async (
       args = ["-map", "0", "-map", "-0:a:2", "-c", "copy"];
     }
 
-    const command = ffmpeg(`${process.env.TMP_FOLDER_PATH}/${filePath}`)
-      .outputOptions(args)
+    const command = ffmpeg(`${filePath}`)
+      //.outputOptions(args)
       .output(`${process.env.ORIGIN_FOLDER_PATH}/${fileName}`)
       .on("end", () => {
         resolve({

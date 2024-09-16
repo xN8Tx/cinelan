@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { throttle } from "lodash";
+
+import { saveWatchTime } from "@ut";
 
 import { Timer } from "./timer";
 import { TimeLine } from "./time-line";
@@ -12,9 +15,10 @@ import { FullScreen } from "./full-screen";
 type VideoPlayerProps = {
   src: string;
   poster: string;
+  id: number;
 };
 
-const VideoPlayer = ({ src, poster }: VideoPlayerProps) => {
+const VideoPlayer = ({ src, poster, id }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -23,31 +27,37 @@ const VideoPlayer = ({ src, poster }: VideoPlayerProps) => {
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
+  const throttledSaveWatchTime = useRef(
+    throttle(
+      (time: number) => saveWatchTime({ time, fileId: id, userId: 1 }),
+      60000,
+    ),
+  ).current;
+
   const handleTimeUpdate = () => {
     const video = videoRef.current;
-    if (video) {
-      setCurrentTime(video.currentTime);
-    }
+    if (!video) return;
+    setCurrentTime(video.currentTime);
+    throttledSaveWatchTime(video.currentTime);
   };
 
   const skipTime = (seconds: number) => {
     const video = videoRef.current;
-    if (video) {
-      video.currentTime += seconds;
-      setCurrentTime(video.currentTime);
-    }
+    if (!video) return;
+    video.currentTime += seconds;
+    setCurrentTime(video.currentTime);
   };
 
   const togglePlayPause = () => {
     const video = videoRef.current;
-    if (video) {
-      if (isPlaying) {
-        video.pause();
-      } else {
-        video.play();
-      }
-      setIsPlaying(!isPlaying);
+    if (!video) return;
+
+    if (isPlaying) {
+      video.pause();
+    } else {
+      video.play();
     }
+    setIsPlaying(!isPlaying);
   };
 
   const iconClassName =
@@ -68,6 +78,18 @@ const VideoPlayer = ({ src, poster }: VideoPlayerProps) => {
         break;
     }
   };
+  const fetchWatchedTime = async () => {
+    const response = await fetch(`/api/save-watch-time/${id}`);
+    const data = await response.json();
+    if (data.watchedTime && videoRef.current) {
+      videoRef.current.currentTime = data.watchedTime;
+    }
+  };
+
+  useEffect(() => {
+    fetchWatchedTime();
+  }, [id]);
+
   useEffect(() => {
     window.addEventListener("keydown", keyboardHandler);
 
@@ -92,7 +114,8 @@ const VideoPlayer = ({ src, poster }: VideoPlayerProps) => {
         onClick={togglePlayPause}
         style={{ cursor: "pointer" }}
       >
-        <source src={`/api/video/${src}`} type="video/mp4" />
+        <source src={`api/stream-video/ghost.mkv`} type="video/mp4" />
+        {/*<source src={`/api/video/${src}`} type="video/mp4" />*/}
       </video>
       <Timer
         videoRef={videoRef}

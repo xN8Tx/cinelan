@@ -14,12 +14,13 @@ type SelectorFolder = {
 
 type SelectFolderProps = {
   data: UploadData | EditData;
+  name: string;
   setData:
     | Dispatch<SetStateAction<UploadData>>
     | Dispatch<SetStateAction<EditData>>;
 };
 
-export const SelectFolder = ({ data, setData }: SelectFolderProps) => {
+export const SelectFolder = ({ data, setData, name }: SelectFolderProps) => {
   const [loading, setLoading] = useState<Loading>("idle");
   const [selectFolders, setSelectFolders] = useState<SelectorFolder[]>([]);
 
@@ -78,6 +79,7 @@ export const SelectFolder = ({ data, setData }: SelectFolderProps) => {
         size="lg"
         isDisabled={loading !== "success"}
         onChange={changeSelectHandler}
+        name={name}
       >
         {selectFolders.map((type) => (
           <SelectItem key={type.key} className="text-black dark:text-white">

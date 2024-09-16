@@ -14,10 +14,7 @@ export const videoStream = (filePath: string, request: NextRequest) => {
     const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
 
     if (start >= fileSize || end >= fileSize) {
-      return NextResponse.json(
-        { message: "Incorrect range" },
-        { status: 416 },
-      );
+      return NextResponse.json({ message: "Incorrect range" }, { status: 416 });
     }
 
     const chunkSize = end - start + 1;

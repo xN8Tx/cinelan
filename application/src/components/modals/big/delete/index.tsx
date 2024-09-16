@@ -1,38 +1,17 @@
-import { Button } from "@nextui-org/react";
-import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
-import { BigModalContext, SmallModalContext } from "@ct";
+import { BigModalContext } from "@ct";
+import { useServerAction } from "@hk";
+import { deleteData } from "@at";
 
 import { Wrapper } from "../wrapper";
 import { Title } from "../title";
+import { Button } from "@ui";
 
 export const Delete = () => {
-  const router = useRouter();
+  const { file } = useContext(BigModalContext);
 
-  const { file, setBigModalType } = useContext(BigModalContext);
-  const { setSmallModalMessage, setSmallModalType, setLoadingProgress } =
-    useContext(SmallModalContext);
-
-  const deleteHandler = async () => {
-    setBigModalType(null);
-    setLoadingProgress(100);
-    setSmallModalMessage("Files are deleting");
-    setSmallModalType("loading");
-
-    const res = await fetch(`/api/delete/${file?.id}`, { method: "DELETE" });
-    if (!res.ok) {
-      console.log(await res.text());
-
-      setSmallModalMessage("Can not delete files. Watch more info in console");
-      setSmallModalType("error");
-      return;
-    }
-
-    setSmallModalType("success");
-    setSmallModalMessage("Successfuly delete files");
-    router.push("/");
-  };
+  const deleteHandler = useServerAction<number>(deleteData, "Deleting data");
 
   return (
     <Wrapper>
@@ -44,7 +23,11 @@ export const Delete = () => {
             (file?.type.name === "serial" &&
               "All nested files will be deleted.")}
         </p>
-        <Button className="w-full" color="danger" onClick={deleteHandler}>
+        <Button
+          className="w-full"
+          color="danger"
+          onClick={() => deleteHandler(file?.id)}
+        >
           Yes, I{"'"}m sure
         </Button>
       </div>

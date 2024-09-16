@@ -27,7 +27,7 @@ export const Folder = ({ uploadData, setUploadData }: FolderProps) => {
         value={uploadData.name}
         onChange={changeNameHandler}
       />
-      <SelectFolder data={uploadData} setData={setUploadData} />
+      <SelectFolder name="fileId" data={uploadData} setData={setUploadData} />
     </>
   );
 };

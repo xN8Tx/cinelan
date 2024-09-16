@@ -51,6 +51,9 @@
       ],
       "@ut": [
         "./src/utils/index.ts"
+      ],
+      "@at": [
+        "./src/actions/index.ts"
       ]
     }
   },

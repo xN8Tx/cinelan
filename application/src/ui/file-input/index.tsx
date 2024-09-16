@@ -4,14 +4,14 @@ import { CiFileOn } from "react-icons/ci";
 type FileInputProps = {
   file: File | null;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  format?: "image/*" | "video/*";
+  format?: "image/*" | "video/*,.mkv";
   multiple?: boolean;
 };
 
 export const FileInput = ({
   file,
   onChange,
-  format = "video/*",
+  format = "video/*,.mkv",
 }: FileInputProps) => {
   return (
     <div className="w-full h-[140px] rounded-lg flex flex-col items-center justify-center gap-1 relative py-3 px-4 border border-form-placeh-c1-light dark:border-form-placeh-c1-dark">

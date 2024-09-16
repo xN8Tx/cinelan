@@ -20,7 +20,7 @@ export const Item = ({ file }: FileProps) => {
   return (
     <Link
       href={`${href}/${file.slug}`}
-      className="w-full py-3 flex justify-between items-center rounded-xl transition-all hover:bg-card-promo-elements-c1-light  dark:hover:bg-card-promo-elements-c1-dark"
+      className="w-full p-3 flex justify-between items-center rounded-xl transition-all hover:bg-card-promo-elements-c1-light  dark:hover:bg-card-promo-elements-c1-dark"
     >
       <div className="flex gap-2 items-center">
         {file.poster && (

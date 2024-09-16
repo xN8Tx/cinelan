@@ -34,6 +34,11 @@ services:
       - ${PORT}:${PORT}
     networks:
       - cinelan
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 2048M
 networks:
   cinelan:
     name: cinelan

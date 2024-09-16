@@ -8,6 +8,8 @@ type VideoFullScreenPlayer = {
   msExitFullscreen: () => void;
   webkitExitFullscreen: () => void;
   exitFullscreen: () => void;
+  mozRequestFullScreen: () => void;
+  mozRequestExitFullScreen: () => void;
 };
 
 type FullScreenProps = {
@@ -33,6 +35,8 @@ export const FullScreen = ({
           video.webkitRequestFullscreen();
         } else if (video.msRequestFullscreen) {
           video.msRequestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen;
         }
       } else {
         if ((document as unknown as VideoFullScreenPlayer).exitFullscreen) {
@@ -45,6 +49,13 @@ export const FullScreen = ({
           (document as unknown as VideoFullScreenPlayer).msExitFullscreen
         ) {
           (document as unknown as VideoFullScreenPlayer).msExitFullscreen();
+        } else if (
+          (document as unknown as VideoFullScreenPlayer)
+            .mozRequestExitFullScreen
+        ) {
+          (
+            document as unknown as VideoFullScreenPlayer
+          ).mozRequestExitFullScreen();
         }
       }
     }

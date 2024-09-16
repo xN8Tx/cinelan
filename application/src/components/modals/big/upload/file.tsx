@@ -35,7 +35,7 @@ export const File = ({ uploadData, setUploadData }: FileProps) => {
         value={uploadData.name}
         onChange={changeNameHandler}
       />
-      <SelectFolder data={uploadData} setData={setUploadData} />
+      <SelectFolder name="fileId" data={uploadData} setData={setUploadData} />
       <FileInput file={uploadData.file} onChange={changeFileHandler} />
     </>
   );

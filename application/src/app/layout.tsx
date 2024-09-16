@@ -19,7 +19,9 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} dark overflow-y-hidden`}>
+      <body
+        className={`${inter.className} transition-colors overflow-y-hidden`}
+      >
         <Providers>
           <div className="w-full h-screen flex gap-8 dark:bg-body-bg-dark bg-body-bg-light">
             <BigModal />

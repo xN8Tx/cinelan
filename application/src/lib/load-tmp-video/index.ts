@@ -42,7 +42,7 @@ export const loadTmpVideo: LoadFile = async (formData: FormData) => {
         .on("finish", () => {
           console.log("File saved successfully");
           resolve({
-            tmpSource: filename,
+            tmpSource: `${process.env.TMP_FOLDER_PATH}/${filename}`,
             originalName: name,
             format,
             size,

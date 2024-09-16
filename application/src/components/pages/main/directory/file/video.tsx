@@ -9,6 +9,7 @@ export const Video = ({ file }: VideoProps) => {
   return (
     <div className="w-full aspect-video rounded-xl overflow-hidden">
       <VideoPlayer
+        id={file.id}
         src={file.original_source}
         poster={file.poster!.original_source}
       />
